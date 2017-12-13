@@ -2,68 +2,135 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 
 
 def levine_marketplace():
     url = "https://new.dineoncampus.com/Northeastern/menus"
     browser = webdriver.PhantomJS("C:\\Users\chris\Documents\phantomjs-2.1.1-windows\\bin\phantomjs.exe")
     browser.get(url)
-    WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, "item-row"))
+    WebDriverWait(browser, 20).until(
+        ec.presence_of_element_located((By.CLASS_NAME, "item-row"))
     )
-    html = browser.page_source
-    soup = BeautifulSoup(html, "html.parser")
-    breakfast = soup.findAll("td", {"class": "item-name"})
-    # for item in breakfast:
-    #     print(item.strong.find(text=True, recursive=False).strip())
-    browser.find_element_by_xpath('//a[.="Lunch"]').click()
-    lunchhtml = browser.page_source
-    lunchsoup = BeautifulSoup(lunchhtml, "html.parser")
-    lunch = lunchsoup.findAll("td", {"class": "item-name"})
-    # for item in lunch:
-    #     print(item.strong.find(text=True, recursive=False).strip())
-    browser.find_element_by_xpath('//a[.="Dinner"]').click()
-    dinnerhtml = browser.page_source
-    browser.close()
-    dinnersoup = BeautifulSoup(dinnerhtml, "html.parser")
-    dinner = dinnersoup.findAll("td", {"class": "item-name"})
-    for item in dinner:
-        print(item.strong.find(text=True, recursive=False).strip())
+    meal = input("What meal would you like to eat?\n"
+                 "breakfast\n"
+                 "lunch\n"
+                 "dinner\n")
+    if meal.lower().startswith('b'):
+        html = browser.page_source
+        soup = BeautifulSoup(html, "html.parser")
+        breakfast = soup.findAll("td", {"class": "item-name"})
+        for item in breakfast:
+            print(item.strong.find(text=True, recursive=False).strip())
+    if meal.lower().startswith('l'):
+        browser.find_element_by_xpath('//a[.="Lunch"]').click()
+        lunchhtml = browser.page_source
+        lunchsoup = BeautifulSoup(lunchhtml, "html.parser")
+        lunch = lunchsoup.findAll("td", {"class": "item-name"})
+        for item in lunch:
+            print(item.strong.find(text=True, recursive=False).strip())
+    if meal.lower().startswith('d'):
+        browser.find_element_by_xpath('//a[.="Dinner"]').click()
+        dinnerhtml = browser.page_source
+        browser.close()
+        dinnersoup = BeautifulSoup(dinnerhtml, "html.parser")
+        dinner = dinnersoup.findAll("td", {"class": "item-name"})
+        for item in dinner:
+            print(item.strong.find(text=True, recursive=False).strip())
 
 
-def internation_village():
+def international_village():
     url = "https://new.dineoncampus.com/Northeastern/menus"
     browser = webdriver.PhantomJS("C:\\Users\chris\Documents\phantomjs-2.1.1-windows\\bin\phantomjs.exe")
     browser.get(url)
-    WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, "item-row"))
+    WebDriverWait(browser, 20).until(
+        ec.presence_of_element_located((By.CLASS_NAME, "item-row"))
     )
     browser.find_element_by_xpath('//span[.="Levine Marketplace"]').click()
     browser.find_element_by_xpath('//div[.="International Village"]').click()
-    WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, "item-row"))
+    WebDriverWait(browser, 20).until(
+        ec.presence_of_element_located((By.CLASS_NAME, "item-row"))
     )
-    html = browser.page_source
-    soup = BeautifulSoup(html, "html.parser")
-    breakfast = soup.findAll("td", {"class": "item-name"})
-    # for item in breakfast:
-    #     print(item.strong.find(text=True, recursive=False).strip())
-    browser.find_element_by_xpath('//a[.="Lunch"]').click()
-    lunchhtml = browser.page_source
-    lunchsoup = BeautifulSoup(lunchhtml, "html.parser")
-    lunch = lunchsoup.findAll("td", {"class": "item-name"})
-    # for item in lunch:
-    #     print(item.strong.find(text=True, recursive=False).strip())
-    browser.find_element_by_xpath('//a[.="Dinner"]').click()
-    dinnerhtml = browser.page_source
-    browser.close()
-    dinnersoup = BeautifulSoup(dinnerhtml, "html.parser")
-    dinner = dinnersoup.findAll("td", {"class": "item-name"})
-    for item in dinner:
-        print(item.strong.find(text=True, recursive=False).strip())
+    meal = input("What meal would you like to eat?\n"
+                 "breakfast\n"
+                 "lunch\n"
+                 "dinner\n")
+    if meal.lower().startswith('b'):
+        html = browser.page_source
+        soup = BeautifulSoup(html, "html.parser")
+        breakfast = soup.findAll("td", {"class": "item-name"})
+        for item in breakfast:
+            print(item.strong.find(text=True, recursive=False).strip())
+    elif meal.lower().startswith('l'):
+        browser.find_element_by_xpath('//a[.="Lunch"]').click()
+        lunchhtml = browser.page_source
+        lunchsoup = BeautifulSoup(lunchhtml, "html.parser")
+        lunch = lunchsoup.findAll("td", {"class": "item-name"})
+        for item in lunch:
+            print(item.strong.find(text=True, recursive=False).strip())
+    elif meal.lower().startswith('d'):
+        browser.find_element_by_xpath('//a[.="Dinner"]').click()
+        dinnerhtml = browser.page_source
+        browser.close()
+        dinnersoup = BeautifulSoup(dinnerhtml, "html.parser")
+        dinner = dinnersoup.findAll("td", {"class": "item-name"})
+        for item in dinner:
+            print(item.strong.find(text=True, recursive=False).strip())
+    else:
+        print('That is not a valid response')
+
+
+def stetson_west():
+    url = "https://new.dineoncampus.com/Northeastern/menus"
+    browser = webdriver.PhantomJS("C:\\Users\chris\Documents\phantomjs-2.1.1-windows\\bin\phantomjs.exe")
+    browser.get(url)
+    WebDriverWait(browser, 20).until(
+        ec.presence_of_element_located((By.CLASS_NAME, "item-row"))
+    )
+    browser.find_element_by_xpath('//span[.="Levine Marketplace"]').click()
+    browser.find_element_by_xpath('//div[.="Stetson West Eatery"]').click()
+    WebDriverWait(browser, 20).until(
+        ec.presence_of_element_located((By.CLASS_NAME, "item-row"))
+    )
+    meal = input("What meal would you like to eat?\n"
+                 "breakfast\n"
+                 "lunch\n"
+                 "dinner\n")
+    if meal.lower().startswith('b'):
+        html = browser.page_source
+        soup = BeautifulSoup(html, "html.parser")
+        breakfast = soup.findAll("td", {"class": "item-name"})
+        for item in breakfast:
+            print(item.strong.find(text=True, recursive=False).strip())
+    elif meal.lower().startswith('l'):
+        browser.find_element_by_xpath('//a[.="Lunch"]').click()
+        lunchhtml = browser.page_source
+        lunchsoup = BeautifulSoup(lunchhtml, "html.parser")
+        lunch = lunchsoup.findAll("td", {"class": "item-name"})
+        for item in lunch:
+            print(item.strong.find(text=True, recursive=False).strip())
+    elif meal.lower().startswith('d'):
+        browser.find_element_by_xpath('//a[.="Dinner"]').click()
+        dinnerhtml = browser.page_source
+        browser.close()
+        dinnersoup = BeautifulSoup(dinnerhtml, "html.parser")
+        dinner = dinnersoup.findAll("td", {"class": "item-name"})
+        for item in dinner:
+            print(item.strong.find(text=True, recursive=False).strip())
+    else:
+        print('That is not a valid response')
 
 
 if __name__ == '__main__':
-    internation_village()
-
+    location = input("Where would you like to eat?\n"
+                     "international village\n"
+                     "stetson west\n"
+                     "levine marketplace\n")
+    if location.lower().startswith('i'):
+        international_village()
+    elif location.lower().startswith('l'):
+        levine_marketplace()
+    elif location.lower().startswith('s'):
+        stetson_west()
+    else:
+        print("That is not a valid location")
